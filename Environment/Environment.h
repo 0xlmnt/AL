@@ -4,6 +4,8 @@
 
 #include <vector>
 #include <utility>
+#include <iostream>
+#include <random>
 #include "../Organism/Organism.h"
 
 #ifndef ARTIFICIALLIFE_ENVIRONMENT_H
@@ -15,6 +17,8 @@ private:
     double refill_rate;
     std::vector<Organism> population;
     void del_organism(size_t idx);
+    void shuffle();
+    std::default_random_engine rng;
 
 public:
     Environment(double food, double refill_rate, std::vector<Organism> population);

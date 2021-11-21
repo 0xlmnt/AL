@@ -2,25 +2,28 @@
 // Created by u on 21.11.21.
 //
 
-#include <iostream>
 #include "Environment.h"
 
 Environment::Environment(double food, double refill_rate, std::vector<Organism> population) {
     this->food = food;
     this->refill_rate = refill_rate;
     this->population = std::move(population);
+
+    auto rd = std::random_device{};
+    this->rng = std::default_random_engine { rd() };
 }
 
 size_t Environment::update() {
     size_t divisions = 0;
     std::vector<Organism> new_organisms{};
     std::vector<size_t> idx_to_delete{};
+    this->shuffle();
 
     //for (auto organism : this->population) {
     for (int i = 0; i < this->population.size(); ++i) {
         auto organism = &this->population[i];
 
-        auto org_step = organism->update(std::max(0.0, this->food));
+        auto org_step = organism->update(this->food);
         this->food -= org_step.amount_food_consumed;
 
         if (!organism->is_alive()) {
@@ -64,5 +67,9 @@ void Environment::del_organism(size_t idx) {
 
 double Environment::get_food() const {
     return this->food;
+}
+
+void Environment::shuffle() {
+    std::shuffle(std::begin(this->population), std::end(this->population), rng);
 }
 
