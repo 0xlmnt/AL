@@ -2,6 +2,7 @@
 // Created by u on 21.11.21.
 //
 
+#include <iostream>
 #include "Environment.h"
 
 Environment::Environment(double food, double refill_rate, std::vector<Organism> population) {
@@ -19,13 +20,13 @@ size_t Environment::update() {
     for (int i = 0; i < this->population.size(); ++i) {
         auto organism = &this->population[i];
 
-        auto org_step = organism->update();
+        auto org_step = organism->update(std::max(0.0, this->food));
+        this->food -= org_step.amount_food_consumed;
 
         if (!organism->is_alive()) {
             idx_to_delete.push_back(i);
             continue;
         }
-        this->food -= org_step.amount_food_consumed;
 
         if (org_step.is_ready_to_divide) {
             ++divisions;
@@ -59,5 +60,9 @@ size_t Environment::get_population_size() {
 void Environment::del_organism(size_t idx) {
     this->population[idx] = this->population.back();
     this->population.pop_back();
+}
+
+double Environment::get_food() const {
+    return this->food;
 }
 

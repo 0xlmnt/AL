@@ -14,13 +14,13 @@ int main() {
 
 
     auto env = Environment(
-            0.0,
             1000.0,
+            100.0,
             std::vector<Organism> {o1}
             );
 
     for (int i = 0; i < 5000; ++i) {
-        std::cout << env.get_population_size() << std::endl;
+        std::cout << env.get_population_size() << " | " << env.get_food() << std::endl;
         env.update();
     }
 
