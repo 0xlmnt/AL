@@ -1,0 +1,63 @@
+//
+// Created by u on 21.11.21.
+//
+
+#include "Environment.h"
+
+Environment::Environment(double food, double refill_rate, std::vector<Organism> population) {
+    this->food = food;
+    this->refill_rate = refill_rate;
+    this->population = std::move(population);
+}
+
+size_t Environment::update() {
+    size_t divisions = 0;
+    std::vector<Organism> new_organisms{};
+    std::vector<size_t> idx_to_delete{};
+
+    //for (auto organism : this->population) {
+    for (int i = 0; i < this->population.size(); ++i) {
+        auto organism = &this->population[i];
+
+        auto org_step = organism->update();
+
+        if (!organism->is_alive()) {
+            idx_to_delete.push_back(i);
+            continue;
+        }
+        this->food -= org_step.amount_food_consumed;
+
+        if (org_step.is_ready_to_divide) {
+            ++divisions;
+            organism->divide(&new_organisms);
+
+            // mark for deletion
+            idx_to_delete.push_back(i);
+        }
+    }
+
+    //remove
+    std::sort(idx_to_delete.begin(), idx_to_delete.end(), std::greater<>());
+    for (auto idx : idx_to_delete) {
+        this->del_organism(idx);
+    }
+
+    // add new organisms
+    for (const auto& organism : new_organisms) {
+        this->population.push_back(organism);
+    }
+
+    this->food += this->refill_rate;
+
+    return divisions;
+}
+
+size_t Environment::get_population_size() {
+    return this->population.size();
+}
+
+void Environment::del_organism(size_t idx) {
+    this->population[idx] = this->population.back();
+    this->population.pop_back();
+}
+
