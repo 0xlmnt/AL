@@ -25,6 +25,7 @@ public:
     Environment(double food, double refill_rate, std::vector<Organism> population);
     size_t update();
     std::map<std::string, size_t> get_population_size();
+    size_t get_population_size_total();
     double get_food() const;
 };
 

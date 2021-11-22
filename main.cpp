@@ -26,8 +26,8 @@ int main() {
             "two",
             100.0,
             200.0,
-            [](double x) { return 1; },
-            [](double x) { return 4; }
+            [](double x) { return 1.95; },
+            [](double x) { return 4.95; }
     );
 
 
@@ -37,7 +37,7 @@ int main() {
             std::vector<Organism> {organism_active, organism_passive}
             );
 
-    for (int i = 0; i < 2000; ++i) {
+    for (int i = 0; i < 5000; ++i) {
         std::stringstream stream;
         for (const auto& x : env.get_population_size()) {
             stream << "{" << x.first << ": " << x.second << "} ";

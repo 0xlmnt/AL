@@ -78,3 +78,7 @@ void Environment::shuffle() {
     std::shuffle(std::begin(this->population), std::end(this->population), rng);
 }
 
+size_t Environment::get_population_size_total() {
+    return this->population.size();
+}
+
