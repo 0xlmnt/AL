@@ -8,9 +8,6 @@
 #include <string>
 #include <functional>
 
-// uptake_rate = u * size ^ 2/3
-// metabolic_rate = m * size
-
 struct Organism_Step{
     bool is_ready_to_divide;
     double amount_food_consumed;
@@ -43,6 +40,7 @@ public:
     void divide(std::vector<Organism>* vec);
 
     double get_size() const;
+    std::string get_name();
     bool is_alive() const;
 };
 

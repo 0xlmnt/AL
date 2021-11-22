@@ -19,7 +19,6 @@ size_t Environment::update() {
     std::vector<size_t> idx_to_delete{};
     this->shuffle();
 
-    //for (auto organism : this->population) {
     for (int i = 0; i < this->population.size(); ++i) {
         auto organism = &this->population[i];
 
@@ -56,8 +55,14 @@ size_t Environment::update() {
     return divisions;
 }
 
-size_t Environment::get_population_size() {
-    return this->population.size();
+std::map<std::string, size_t> Environment::get_population_size() {
+    auto map = std::map<std::string, size_t>{};
+
+    for (auto organism : this->population) {
+        map[organism.get_name()] += 1;
+    }
+
+    return map;
 }
 
 void Environment::del_organism(size_t idx) {

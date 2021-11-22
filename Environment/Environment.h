@@ -6,6 +6,7 @@
 #include <utility>
 #include <iostream>
 #include <random>
+#include <map>
 #include "../Organism/Organism.h"
 
 #ifndef ARTIFICIALLIFE_ENVIRONMENT_H
@@ -23,7 +24,7 @@ private:
 public:
     Environment(double food, double refill_rate, std::vector<Organism> population);
     size_t update();
-    size_t get_population_size();
+    std::map<std::string, size_t> get_population_size();
     double get_food() const;
 };
 

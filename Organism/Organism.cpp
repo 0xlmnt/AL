@@ -67,3 +67,7 @@ void Organism::divide(std::vector<Organism>* vec) {
     vec->push_back(new_org);
     vec->push_back(new_org);
 }
+
+std::string Organism::get_name() {
+    return this->species;
+}
