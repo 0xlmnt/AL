@@ -61,7 +61,7 @@ bool Organism::is_alive() const {
 
 void Organism::divide(std::vector<Organism>* vec) {
 
-    auto new_org = Organism{
+    auto org1 = Organism{
             this->species,
             this->size / 2.0,
             this->division_threshold,
@@ -71,9 +71,13 @@ void Organism::divide(std::vector<Organism>* vec) {
             this->f_metabolism,
             this->f_uptake
     };
+    auto org2 = org1;
 
-    vec->push_back(new_org);
-    vec->push_back(new_org);
+    org1.mutate();
+    org2.mutate();
+
+    vec->push_back(org1);
+    vec->push_back(org2);
 }
 
 std::string Organism::get_name() {
@@ -123,23 +127,34 @@ Mutation Organism::get_mutation() {
     };
 }
 
-void Organism::mutate(Organism *organism, Mutation mutation) {
+void Organism::mutate(Mutation mutation) {
 
     switch (mutation.type) {
         case MutationType::C_UPTAKE:
-            organism->uptake_coeff += mutation.value;
+            this->uptake_coeff += mutation.value;
             break;
         case MutationType::C_METABOLISM:
-            organism->metabolism_coeff += mutation.value;
+            this->metabolism_coeff += mutation.value;
             break;
         case MutationType::DIV_THRESHOLD:
-            organism->division_threshold += mutation.value;
+            this->division_threshold += mutation.value;
             break;
         case MutationType::SIZE_MULTIPLIER:
-            organism->size_multiplier += mutation.value;
+            this->size_multiplier += mutation.value;
             break;
         case MutationType::NONE:
             break;
     }
 
+}
+
+Mutation Organism::mutate() {
+    auto mut = this->get_mutation();
+    this->mutate(mut);
+
+    if (mut.type != MutationType::NONE){
+        this->mutations.push_back(mut);
+    }
+
+    return mut;
 }

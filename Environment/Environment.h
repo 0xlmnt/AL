@@ -26,7 +26,7 @@ public:
     size_t update();
     std::map<std::string, size_t> get_population_size();
     size_t get_population_size_total();
-    double get_food() const;
+    [[nodiscard]] double get_food() const;
 };
 
 #endif //ARTIFICIALLIFE_ENVIRONMENT_H

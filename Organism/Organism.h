@@ -52,7 +52,8 @@ private:
 
     OrganismStep update(Uptake uptake);
     Mutation get_mutation();
-    void mutate(Organism* organism, Mutation mutation);
+    void mutate(Mutation mutation);
+
 
 public:
     Organism(std::string species, double size, double division_threshold, double uptake_coeff, double metabolism_coeff, double size_multiplier,
@@ -66,6 +67,8 @@ public:
     double get_size() const;
     std::string get_name();
     bool is_alive() const;
+
+    Mutation mutate();
 };
 
 #endif //ARTIFICIALLIFE_ORGANISM_H
