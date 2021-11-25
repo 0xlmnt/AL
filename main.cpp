@@ -6,20 +6,13 @@
 
 
 int main() {
-
-    auto o1 = Organism("Specimen Zero",
-                         100.0,
-                         200.0,
-                         [](double size) { return 1.0/50.0 * size; },
-                         [](double size) {return 1.0/4.0 * std::pow(size, 2.0/3.0); });
-
-
     auto organism_active = Organism(
             "one",
             100.0,
             200.0,
             2.0,
             5.0,
+            1.0,
             [](double upt_coeff, double size) { return upt_coeff; },
             [](double met_coeff, double size) { return met_coeff; }
             );
@@ -30,6 +23,7 @@ int main() {
             200.0,
             1.5,
             4.95,
+            1.0,
             [](double upt_coeff, double size) { return upt_coeff; },
             [](double met_coeff, double size) { return met_coeff; }
     );
