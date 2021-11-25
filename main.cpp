@@ -37,7 +37,7 @@ int main() {
             std::vector<Organism> {organism_active, organism_passive}
             );
 
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 4000; ++i) {
         std::stringstream stream;
         for (const auto& x : env.get_population_size()) {
             stream << "{" << x.first << ": " << x.second << "} ";

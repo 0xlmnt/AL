@@ -6,13 +6,13 @@
 #include <utility>
 
 Organism_Step Organism::update() {
-    auto uptake = Uptake{this->uptake_rate(this->size)};
+    auto uptake = Uptake{this->f_uptake(this->size)};
     return this->update(uptake);
 }
 
 Organism_Step Organism::update(double available_food) {
     auto uptake = Uptake{
-        std::min(available_food, this->uptake_rate(this->size))
+        std::min(available_food, this->f_uptake(this->size))
     };
     return update(uptake);
 }
@@ -22,7 +22,7 @@ Organism_Step Organism::update(Uptake uptake) {
 
     if (this->alive){
         this->size += uptake.value;
-        this->size -= this->metabolic_rate(this->size);
+        this->size -= this->f_metabolism(this->size);
     }
     if (this->size <= 0)
         this->alive = false;
@@ -39,7 +39,7 @@ Organism_Step Organism::update(Uptake uptake) {
 
 Organism::Organism(std::string species, double size, double division_threshold,
                    std::function<double(double)> metabolicRate, std::function<double(double)> uptakeRate)
-        : metabolic_rate(std::move(metabolicRate)), uptake_rate(std::move(uptakeRate)) {
+        : f_metabolism(std::move(metabolicRate)), f_uptake(std::move(uptakeRate)) {
 
     this->species = std::move(species);
     this->size = size;
@@ -60,8 +60,8 @@ void Organism::divide(std::vector<Organism>* vec) {
             this->species,
             this->size / 2.0,
             this->division_threshold,
-            this->metabolic_rate,
-            this->uptake_rate
+            this->f_metabolism,
+            this->f_uptake
     };
 
     vec->push_back(new_org);

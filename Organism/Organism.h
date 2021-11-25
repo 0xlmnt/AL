@@ -23,8 +23,8 @@ private:
     double size{};
     double division_threshold{};
 
-    std::function<double(double)> uptake_rate;
-    std::function<double(double)> metabolic_rate;
+    std::function<double(double)> f_uptake;
+    std::function<double(double)> f_metabolism;
 
     bool alive{true};
 
