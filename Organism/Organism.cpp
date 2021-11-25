@@ -107,7 +107,7 @@ Mutation Organism::get_mutation() {
             cap = MUTATION_MAGNITUDE_METABOLISM;
             break;
         case MutationType::DIV_THRESHOLD:
-            cap = MUTATION_MAGNITUDE_OTHER;
+            cap = MUTATION_MAGNITUDE_DIV_TRESHOLD;
             break;
         case MutationType::C_UPTAKE:
             cap = MUTATION_MAGNITUDE_UPTAKE;
