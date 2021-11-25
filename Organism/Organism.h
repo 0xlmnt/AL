@@ -40,6 +40,7 @@ private:
     double uptake_coeff{};
     double metabolism_coeff{};
     double size_multiplier{};
+    size_t number_of_divisions{};
 
     std::vector<Mutation> mutations{};
 
@@ -66,6 +67,8 @@ public:
 
     double get_size() const;
     std::string get_name();
+    size_t get_number_of_divisions();
+    std::vector<Mutation> get_mutations();
     bool is_alive() const;
 
     Mutation mutate();

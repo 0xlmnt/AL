@@ -71,6 +71,7 @@ void Organism::divide(std::vector<Organism>* vec) {
             this->f_metabolism,
             this->f_uptake
     };
+
     auto org2 = org1;
 
     org1.mutate();
@@ -87,7 +88,8 @@ std::string Organism::get_name() {
 Mutation Organism::get_mutation() {
 
     std::uniform_real_distribution<> threshold(0.0, 1.0);
-
+    auto rd = std::random_device();
+    this->mut_rng = std::default_random_engine{ rd() };
     if (threshold(mut_rng) > MUTATION_CHANCE) {
         return Mutation{
             MutationType::NONE,
@@ -157,4 +159,12 @@ Mutation Organism::mutate() {
     }
 
     return mut;
+}
+
+std::vector<Mutation> Organism::get_mutations() {
+    return this->mutations;
+}
+
+size_t Organism::get_number_of_divisions() {
+    return this->number_of_divisions;
 }

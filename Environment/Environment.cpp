@@ -82,3 +82,18 @@ size_t Environment::get_population_size_total() {
     return this->population.size();
 }
 
+std::vector<Mutation> Environment::get_best_mutation_chain() {
+    std::vector<Mutation> vec{};
+    double best_score = 0.0;
+
+    for (auto org : this->population) {
+        auto score = org.get_size();// * org.get_number_of_divisions();
+        if (score > best_score) {
+            vec = org.get_mutations();
+            best_score = score;
+        }
+    }
+
+    return vec;
+}
+
