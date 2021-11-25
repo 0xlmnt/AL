@@ -18,16 +18,20 @@ int main() {
             "one",
             100.0,
             200.0,
-            [](double x) { return 2; },
-            [](double x) { return 5; }
+            2.0,
+            5.0,
+            [](double upt_coeff, double size) { return upt_coeff; },
+            [](double met_coeff, double size) { return met_coeff; }
             );
 
     auto organism_passive = Organism(
             "two",
             100.0,
             200.0,
-            [](double x) { return 1.95; },
-            [](double x) { return 4.95; }
+            1.5,
+            4.95,
+            [](double upt_coeff, double size) { return upt_coeff; },
+            [](double met_coeff, double size) { return met_coeff; }
     );
 
 
