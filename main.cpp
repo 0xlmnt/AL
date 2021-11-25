@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 #include <sstream>
 #include "Organism/Organism.h"
 #include "Environment/Environment.h"
