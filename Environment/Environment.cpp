@@ -3,7 +3,6 @@
 //
 
 #include "Environment.h"
-#include "Mutation.h"
 
 Environment::Environment(double food, double refill_rate, std::vector<Organism> population) {
     this->food = food;

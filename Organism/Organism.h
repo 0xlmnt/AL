@@ -29,7 +29,6 @@ private:
     double metabolism_coeff{};
     double size_multiplier{};
     size_t number_of_divisions{};
-
     std::vector<Mutation> mutations{};
 
     std::default_random_engine mut_rng;
@@ -41,6 +40,7 @@ private:
 
     OrganismStep update(Uptake uptake);
     Mutation get_mutation();
+    void set_mutations(std::vector<Mutation> vec);
     void mutate(Mutation mutation);
 
 

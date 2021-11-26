@@ -45,13 +45,21 @@ int main() {
         env.update();
 
         for (const auto& y : env.get_best_mutation_chain()) {
-            stream2 << "{" << static_cast<int>(y.type) << ":" << y.value << "}-" << std::endl;
+            stream2 << "{" << static_cast<int>(y.type) << ":" << y.value << "}-";
         }
 
         std::cout << stream2.str() << std::endl;
         std::cout << "" << std::endl;
     }
 
+
+    std::cout << "---- ALL MUTATIONS ----" << std::endl;
+    for (const auto& z : env.get_population_size_by_mutations()) {
+
+        std::cout << "Mutations: " << z.first << std::endl;
+        std::cout << "Organisms: " << z.second << std::endl;
+        std::cout << std::endl;
+    }
 
     return 0;
 }

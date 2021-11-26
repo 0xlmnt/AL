@@ -8,7 +8,7 @@
 #include <random>
 #include <map>
 #include "../Organism/Organism.h"
-#include "Mutation.h"
+#include "../Mutation.h"
 
 #ifndef ARTIFICIALLIFE_ENVIRONMENT_H
 #define ARTIFICIALLIFE_ENVIRONMENT_H
