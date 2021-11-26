@@ -3,6 +3,7 @@
 //
 
 #include "Organism.h"
+#include "Mutation.h"
 #include <utility>
 
 OrganismStep Organism::update() {
@@ -71,6 +72,8 @@ void Organism::divide(std::vector<Organism>* vec) {
             this->f_metabolism,
             this->f_uptake
     };
+    this->number_of_divisions++;
+    org1.set_number_of_divisions(this->number_of_divisions);
 
     auto org2 = org1;
 
@@ -167,4 +170,8 @@ std::vector<Mutation> Organism::get_mutations() {
 
 size_t Organism::get_number_of_divisions() {
     return this->number_of_divisions;
+}
+
+void Organism::set_number_of_divisions(size_t num) {
+    this->number_of_divisions = num;
 }

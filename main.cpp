@@ -37,7 +37,7 @@ int main() {
     for (int i = 0; i < 5000; ++i) {
         std::stringstream stream;
         std::stringstream stream2;
-        for (const auto& x : env.get_population_size()) {
+        for (const auto& x : env.get_population_size_by_name()) {
             stream << "{" << x.first << ": " << x.second << "} ";
         }
 

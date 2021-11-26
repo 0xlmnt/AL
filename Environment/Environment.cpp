@@ -3,6 +3,7 @@
 //
 
 #include "Environment.h"
+#include "Mutation.h"
 
 Environment::Environment(double food, double refill_rate, std::vector<Organism> population) {
     this->food = food;
@@ -55,7 +56,7 @@ size_t Environment::update() {
     return divisions;
 }
 
-std::map<std::string, size_t> Environment::get_population_size() {
+std::map<std::string, size_t> Environment::get_population_size_by_name() {
     auto map = std::map<std::string, size_t>{};
 
     for (auto organism : this->population) {
@@ -87,7 +88,7 @@ std::vector<Mutation> Environment::get_best_mutation_chain() {
     double best_score = 0.0;
 
     for (auto org : this->population) {
-        auto score = org.get_size();// * org.get_number_of_divisions();
+        auto score = org.get_size() * static_cast<double>(org.get_number_of_divisions());
         if (score > best_score) {
             vec = org.get_mutations();
             best_score = score;
@@ -95,5 +96,15 @@ std::vector<Mutation> Environment::get_best_mutation_chain() {
     }
 
     return vec;
+}
+
+std::map<std::string, size_t> Environment::get_population_size_by_mutations() {
+    auto map = std::map<std::string, size_t>{};
+
+    for (auto organism : this->population) {
+        map[mutation_chain_to_string(organism.get_mutations())] += 1;
+    }
+
+    return map;
 }
 

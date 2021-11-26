@@ -9,6 +9,7 @@
 #include <functional>
 #include <random>
 #include "../Configuration.h"
+#include "../Mutation.h"
 
 struct OrganismStep{
     bool is_ready_to_divide;
@@ -16,19 +17,6 @@ struct OrganismStep{
 };
 
 struct Uptake{
-    double value;
-};
-
-enum class MutationType{
-    NONE = 0,
-    DIV_THRESHOLD = 1,
-    C_UPTAKE = 2,
-    C_METABOLISM = 3,
-    SIZE_MULTIPLIER = 4
-};
-
-struct Mutation{
-    MutationType type;
     double value;
 };
 
@@ -68,6 +56,7 @@ public:
     double get_size() const;
     std::string get_name();
     size_t get_number_of_divisions();
+    void set_number_of_divisions(size_t num);
     std::vector<Mutation> get_mutations();
     bool is_alive() const;
 

@@ -8,6 +8,7 @@
 #include <random>
 #include <map>
 #include "../Organism/Organism.h"
+#include "Mutation.h"
 
 #ifndef ARTIFICIALLIFE_ENVIRONMENT_H
 #define ARTIFICIALLIFE_ENVIRONMENT_H
@@ -24,10 +25,11 @@ private:
 public:
     Environment(double food, double refill_rate, std::vector<Organism> population);
     size_t update();
-    std::map<std::string, size_t> get_population_size();
+    std::map<std::string, size_t> get_population_size_by_name();
     size_t get_population_size_total();
     std::vector<Mutation> get_best_mutation_chain();
     [[nodiscard]] double get_food() const;
+    std::map<std::string, size_t> get_population_size_by_mutations();
 };
 
 #endif //ARTIFICIALLIFE_ENVIRONMENT_H
