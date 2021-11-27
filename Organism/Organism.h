@@ -59,6 +59,7 @@ public:
     void set_number_of_divisions(size_t num);
     std::vector<Mutation> get_mutations();
     bool is_alive() const;
+    size_t get_score();
 
     Mutation mutate();
 };

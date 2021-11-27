@@ -29,7 +29,7 @@ public:
     size_t get_population_size_total();
     std::vector<Mutation> get_best_mutation_chain();
     [[nodiscard]] double get_food() const;
-    std::map<std::string, size_t> get_population_size_by_mutations();
+    std::map<std::string, size_t> get_score_by_mutations();
 };
 
 #endif //ARTIFICIALLIFE_ENVIRONMENT_H

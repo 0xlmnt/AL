@@ -179,3 +179,7 @@ void Organism::set_number_of_divisions(size_t num) {
 void Organism::set_mutations(std::vector<Mutation> vec) {
     this->mutations = vec;
 }
+
+size_t Organism::get_score() {
+    return static_cast<size_t>(this->get_size()) + this->get_number_of_divisions() * 100;
+}

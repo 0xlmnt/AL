@@ -84,10 +84,10 @@ size_t Environment::get_population_size_total() {
 
 std::vector<Mutation> Environment::get_best_mutation_chain() {
     std::vector<Mutation> vec{};
-    double best_score = 0.0;
+    size_t best_score = 0;
 
     for (auto org : this->population) {
-        auto score = org.get_size() * static_cast<double>(org.get_number_of_divisions());
+        auto score = static_cast<size_t>(org.get_size()) + org.get_number_of_divisions() * 100;
         if (score > best_score) {
             vec = org.get_mutations();
             best_score = score;
@@ -97,11 +97,11 @@ std::vector<Mutation> Environment::get_best_mutation_chain() {
     return vec;
 }
 
-std::map<std::string, size_t> Environment::get_population_size_by_mutations() {
+std::map<std::string, size_t> Environment::get_score_by_mutations() {
     auto map = std::map<std::string, size_t>{};
 
     for (auto organism : this->population) {
-        map[mutation_chain_to_string(organism.get_mutations())] += 1;
+        map[mutation_chain_to_string(organism.get_mutations())] = organism.get_size() + organism.get_number_of_divisions() * 100;
     }
 
     return map;

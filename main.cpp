@@ -54,10 +54,10 @@ int main() {
 
 
     std::cout << "---- ALL MUTATIONS ----" << std::endl;
-    for (const auto& z : env.get_population_size_by_mutations()) {
+    for (const auto& z : env.get_score_by_mutations()) {
 
         std::cout << "Mutations: " << z.first << std::endl;
-        std::cout << "Organisms: " << z.second << std::endl;
+        std::cout << "Score: " << z.second << std::endl;
         std::cout << std::endl;
     }
 
